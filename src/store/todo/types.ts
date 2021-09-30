@@ -1,4 +1,4 @@
-import { DeepReadonly } from "@vue/reactivity"
+import { DeepReadonly } from '@vue/reactivity'
 
 export type Status = 'waiting' | 'working' | 'completed' | 'pending'
 

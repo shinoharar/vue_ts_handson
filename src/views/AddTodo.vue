@@ -24,34 +24,11 @@
 
 <script lang="ts">
 import { defineComponent, inject, reactive } from 'vue'
-import { useRouter } from 'vue-router'
-import { Params } from '@/store/todo/types'
-import { todoKey } from '@/store/todo'
+import useAddTodo from './../composables/useAddTodo'
 
 export default defineComponent({
   setup () {
-    const todoStore = inject(todoKey)
-    if (!todoStore) {
-      throw new Error('todoStore is not provided')
-    }
-
-    const router = useRouter()
-
-    const data = reactive<Params>({
-      title: '',
-      description: '',
-      status: 'waiting'
-    })
-
-    const onSubmit = () => {
-      const { title, description, status } = data
-      todoStore.addTodo({
-        title,
-        description,
-        status
-      })
-      router.push('/')
-    }
+    const { data, onSubmit } = useAddTodo()
 
     return {
       data,
